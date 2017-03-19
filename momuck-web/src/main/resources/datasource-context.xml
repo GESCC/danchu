@@ -10,7 +10,7 @@
     </bean>
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://52.78.166.143:3306/momuck_dev"/>
+        <property name="url" value="jdbc:mysql://ip/schema"/>
         <property name="username" value="id"/>
         <property name="password" value="passwd"/>
     </bean>

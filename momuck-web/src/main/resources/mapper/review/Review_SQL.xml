@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Review">
+
+	<resultMap type="com.danchu.momuck.vo.Review" id="Review">
+        <result property="seq" column="seq"/>
+        <result property="score" column="score"/>
+        <result property="message" column="message"/>
+        <result property="userSeq" column="user_seq"/>
+        <result property="foodSeq" column="food_seq"/>
+        <result property="foodRestaurantSeq" column="food_restaurant_seq"/>
+    </resultMap>
+	
+	<select id="selectReview" resultMap="Review">
+	SELECT * FROM review 
+	WHERE food_seq = #{foodSeq}
+	ORDER BY created DESC
+	</select>
+	
+	<insert id="insertReview">
+	<selectKey resultType="integer" keyProperty="seq" order="AFTER">
+	SELECT LAST_INSERT_ID()
+	</selectKey>
+	INSERT INTO review (score, message, user_seq, food_seq, food_restaurant_seq) 
+	VALUES (#{score}, #{message}, #{userSeq}, #{foodSeq}, #{foodRestaurantSeq})
+	</insert>
+	
+	<update id="updateReview">
+	UPDATE review SET score = #{score}, message = #{message}
+	WHERE seq = #{seq}
+	</update>
+	
+	<delete id="deleteReview">
+	DELETE FROM review WHERE seq = #{seq}
+	</delete>
+	
+	<select id="selectRestSeq" resultType="int">
+	SELECT restaurant_seq 
+	FROM food
+	WHERE seq = #{foodSeq}
+	</select>
+	
+</mapper>
