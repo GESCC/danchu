@@ -24,10 +24,18 @@ public class FoodServiceImpl implements FoodService {
 	@Autowired
 	private FoodDao foodDao;
 
+	public Food createFood(Food food) {
+		return foodDao.insertFood(food);
+	}
+	
 	public List<Food> getFoodList(String category, int page) {
 		if (category == null)
 			return foodDao.selectFoodList(page);
 		else
 			return foodDao.selectFoodListByCategory(category, page);
+	}
+
+	public int deleteFood(int seq) {
+		return foodDao.deleteFood(seq);
 	}
 }

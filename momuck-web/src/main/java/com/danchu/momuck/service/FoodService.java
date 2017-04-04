@@ -10,5 +10,9 @@ import com.danchu.momuck.vo.Food;
  * @author lhbv1
  */
 public interface FoodService {
+	Food createFood(Food food);
+	
 	public List<Food> getFoodList(String category, int page);
+	
+	int deleteFood(int seq);
 }
