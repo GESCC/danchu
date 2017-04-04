@@ -10,6 +10,11 @@
 		<result property="restaurantSeq" column="restaurant_seq"/>
 	</resultMap>
 	
+	<insert id="insertFood">
+		INSERT INTO food (name, price, category, avg_score, image_main, image_extra, restaurant_seq)
+		VALUES (#{name}, #{price}, #{category}, #{avgScore}, #{imageMain}, #{imageExtra}, #{restaurantSeq})
+	</insert>
+	
 	<select id="getAllFoodList" resultMap="Food">
 		SELECT *
 		FROM food
@@ -24,4 +29,8 @@
 		ORDER BY created desc
 		LIMIT #{offset}, 10 
 	</select>
+	
+	<delete id="deleteFood">
+		DELETE FROM food WHERE seq = #{seq}
+	</delete>
 </mapper>

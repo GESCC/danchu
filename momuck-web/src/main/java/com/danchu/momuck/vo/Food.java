@@ -2,6 +2,9 @@ package com.danchu.momuck.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -17,6 +20,8 @@ public class Food {
 	private int price;
 	private String category;
 	
+	@Max(value=5, message="not allow type")
+	@Min(value=0, message="not allow type")
 	@JsonProperty("avg_score") 
 	private float avgScore;
 	
