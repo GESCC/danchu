@@ -30,7 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantDao.selectRestaurant(seq);
 	}
 
-	public int deleteRestaurant(String name) {
-		return restaurantDao.deleteRestaurant(name);
+	public int deleteRestaurant(int seq) {
+		return restaurantDao.deleteRestaurant(seq);
 	}
 }

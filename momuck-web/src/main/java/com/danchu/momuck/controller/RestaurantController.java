@@ -61,8 +61,8 @@ public class RestaurantController {
 	 */
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.DELETE, consumes = "application/json")
-	public ResultView delete(HttpServletRequest req, HttpServletResponse res, @PathVariable String restaurantName) { 
-		int result = restaurantService.deleteRestaurant(restaurantName);
+	public ResultView delete(HttpServletRequest req, HttpServletResponse res, @PathVariable int restaurantSeq) { 
+		int result = restaurantService.deleteRestaurant(restaurantSeq);
 		if(result < 0) {
 			return new ResultView("500", "Delete failed", null);
 		}

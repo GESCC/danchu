@@ -12,6 +12,6 @@ public interface RestaurantService {
 
 	Restaurant selectRestaurant(int seq);
 
-	int deleteRestaurant(String name);
+	int deleteRestaurant(int seq);
 
 }

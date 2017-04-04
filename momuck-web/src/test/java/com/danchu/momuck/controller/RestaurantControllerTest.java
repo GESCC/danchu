@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.danchu.momuck.dao.AccountDao;
@@ -66,18 +68,13 @@ public class RestaurantControllerTest {
 				.andReturn();
 	}
 	
-//	@Test
-//	public void selectRestaurant() throws Exception {
-//		this.mockMvc.perform(get("/restaurants/{restaurant_id}", 7).contentType(MediaType.APPLICATION_JSON))
-//			.andExpect(status().isOk())
-//			.andExpect(content().contentType("application/json;charset=UTF-8"))
-//			.andExpect(jsonPath("$", hasKey("code")))
-//			.andExpect(jsonPath("$.code").value("200"))
-//			.andReturn();
-//	}
-	
-	@After
-	public void clear() {
-		restaurantDao.deleteRestaurant(NAME);
+	@Test
+	public void selectRestaurant() throws Exception {
+		this.mockMvc.perform(get("/restaurants/{restaurant_id}", 1).contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json;charset=UTF-8"))
+			.andExpect(jsonPath("$", hasKey("code")))
+			.andExpect(jsonPath("$.code").value("200"))
+			.andReturn();
 	}
 }
