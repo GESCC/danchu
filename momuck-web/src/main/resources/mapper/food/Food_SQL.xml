@@ -40,4 +40,20 @@
 		DELETE FROM food 
 		WHERE name = #{name} and restaurant_seq = #{restaurantSeq}
 	</delete>
+	
+	<select id="selectFoodListByKeyword" resultMap="Food">
+	SELECT *
+	FROM food f, restaurant r
+	WHERE f.restaurant_seq = r.seq AND 
+	(f.category LIKE CONCAT('%',#{keyword},'%') OR 
+	f.name LIKE CONCAT('%',#{keyword},'%') OR
+	r.name LIKE CONCAT('%',#{keyword},'%'))
+	<if test="sort == 0">
+		ORDER BY f.avg_score desc
+	</if>
+	<if test="sort == 1">
+		ORDER BY f.price asc
+	</if>
+	LIMIT #{offset}, 10
+	</select>
 </mapper>
